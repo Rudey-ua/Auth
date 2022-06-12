@@ -14,29 +14,7 @@
 
 <!--Navbar-->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">Slando</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExample07">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Сообщения</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Избранное</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Подать объявление</a>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-</nav>
+@include('includes.user.navbar')
 
 <!--End-Navbar-->
 
@@ -52,7 +30,6 @@
                     @else
                         <img class="rounded-3 mt-5" width="200px" src="{{ $user['img_src'] }}">
                     @endif
-
                     <span class="font-weight-bold">{{ $user['name'] }}</span>
                     <span class="text-black-50">{{ $user['email'] }}</span>
 

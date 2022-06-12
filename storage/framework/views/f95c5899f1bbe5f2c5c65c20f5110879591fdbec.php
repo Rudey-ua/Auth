@@ -39,6 +39,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
+                        <?php if(auth()->guard()->check()): ?>
+                            <a class="btn btn-warning nav-link" href="<?php echo e(route('advertisement.index')); ?>"><span style="color:black;font-weight: bold">Подать объявление</span></a>
+                            <a class="nav-link"></a>
+                        <?php endif; ?>
+
                         <!-- Authentication Links -->
                         <?php if(auth()->guard()->guest()): ?>
                             <?php if(Route::has('login')): ?>
@@ -62,6 +68,8 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="<?php echo e(route('profile')); ?>">Profile</a>
+
+                                    <a class="dropdown-item" href="<?php echo e(route('advertisement.showAll')); ?>">Advertisements</a>
 
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();

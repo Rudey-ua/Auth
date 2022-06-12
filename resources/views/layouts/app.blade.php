@@ -38,6 +38,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
+                        @auth()
+                            <a class="btn btn-warning nav-link" href="{{ route('advertisement.index') }}"><span style="color:black;font-weight: bold">Подать объявление</span></a>
+                            <a class="nav-link"></a>
+                        @endauth
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -60,6 +66,8 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+
+                                    <a class="dropdown-item" href="{{ route('advertisement.showAll') }}">Advertisements</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

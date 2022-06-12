@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('img_src')->nullable();
             $table->string('github_id')->nullable();
+            $table->string('is_banned')->default(0);
             $table->unsignedInteger('group')->default(0); // 0 - user, 1 - admin
             $table->rememberToken();
             $table->timestamps();
