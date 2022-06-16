@@ -14,4 +14,12 @@ class PagesController extends Controller
             'user' => Auth::user()
         ]);
     }
+
+    public function index() {
+
+        return view('home', [
+            'categories' => Category::all(),
+            'advertisements' => Advertisement::all(),
+        ]);
+    }
 }

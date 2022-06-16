@@ -19,6 +19,9 @@
 <!--End-Navbar-->
 
 <div class="container rounded bg-white mb-4">
+    <div class="mt-2">
+        <a style="text-decoration: none; color:black" href="<?php echo e(URL::previous()); ?>"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
+    </div>
     <div class="row">
         <div class="col-md-5 border-right">
             <form action="/profile/update/image" method="post" enctype="multipart/form-data">
@@ -26,9 +29,9 @@
                 <input type="hidden" name="id" value="<?php echo e($user['id']); ?>">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-2">
                     <?php if($user['img_src'] == null): ?>
-                        <img class="rounded-3 mt-5" width="200px" src="storage/images/user.png">
+                        <img class="rounded-3 mt-5" width="200px" src="<?php echo e(asset('storage/images/user.png')); ?>" alt="user_img">
                     <?php else: ?>
-                        <img class="rounded-3 mt-5" width="200px" src="<?php echo e($user['img_src']); ?>">
+                        <img class="rounded-3 mt-5" width="200px" src="<?php echo e($user['img_src']); ?>" alt="user_img">
                     <?php endif; ?>
                     <span class="font-weight-bold"><?php echo e($user['name']); ?></span>
                     <span class="text-black-50"><?php echo e($user['email']); ?></span>
@@ -114,65 +117,13 @@ if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
                                 <span class="invalid-feedback" role="alert">
-                                        <p style="margin-bottom: 0px"><?php echo e($message); ?></p>
+                                    <p style="margin-bottom: 0px"><?php echo e($message); ?></p>
                                 </span>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
-
-                    <!--Пароль-->
-                    <!--                        <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels">Изменить пароль</label>
-                                <input class="form-control <?php $__errorArgs = ['old_password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" type="password" id="old_password" name="old_password" class="form-control" placeholder="старый пароль">
-                                <?php $__errorArgs = ['old_password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="invalid-feedback" role="alert">
-                                        <p style="margin-bottom: 0px"><?php echo e($message); ?></p>
-                                    </span>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="labels"></label>
-                                <input class="form-control <?php $__errorArgs = ['new_password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" id="new_password" type="password" class="form-control" name="new_password" placeholder="новый пароль">
-
-                                <?php $__errorArgs = ['new_password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="invalid-feedback" role="alert">
-                                            <p style="margin-bottom: 0px"><?php echo e($message); ?></p>
-                                        </span>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                            </div>
-                        </div>-->
-
                     </div>
                     <button  class="btn btn-primary profile-button mt-4" type="submit">Save Profile</button>
                 </form>

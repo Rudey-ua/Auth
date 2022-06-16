@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
+use App\Models\Advertisement;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::defaultView('vendor.pagination.bootstrap-5');
+
+        Blade::if('admin', function () {
+            return auth()->check() && auth()->user()->group == 1;
+        });
     }
 }

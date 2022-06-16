@@ -72,15 +72,4 @@ class ProfileController extends Controller
 
         return redirect()->to('/profile');
     }
-
-    /*Delete Image*/
-    /*public function deleteImage(Request $request)
-    {
-        $user = User::find($request['id']);
-        $user['img_src'] = "";
-        $user->save();
-
-        return redirect()->to('/profile');
-    }*/
-
 }

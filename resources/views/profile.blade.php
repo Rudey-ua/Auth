@@ -19,6 +19,9 @@
 <!--End-Navbar-->
 
 <div class="container rounded bg-white mb-4">
+    <div class="mt-2">
+        <a style="text-decoration: none; color:black" href="{{ URL::previous() }}"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
+    </div>
     <div class="row">
         <div class="col-md-5 border-right">
             <form action="/profile/update/image" method="post" enctype="multipart/form-data">
@@ -26,9 +29,9 @@
                 <input type="hidden" name="id" value="{{ $user['id'] }}">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-2">
                     @if($user['img_src'] == null)
-                        <img class="rounded-3 mt-5" width="200px" src="storage/images/user.png">
+                        <img class="rounded-3 mt-5" width="200px" src="{{ asset('storage/images/user.png') }}" alt="user_img">
                     @else
-                        <img class="rounded-3 mt-5" width="200px" src="{{ $user['img_src'] }}">
+                        <img class="rounded-3 mt-5" width="200px" src="{{ $user['img_src'] }}" alt="user_img">
                     @endif
                     <span class="font-weight-bold">{{ $user['name'] }}</span>
                     <span class="text-black-50">{{ $user['email'] }}</span>
@@ -75,34 +78,10 @@
                             <input id="dob" type="date" name="dob" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ $user['dob'] }}" required autocomplete="dob">
                             @error('dob')
                                 <span class="invalid-feedback" role="alert">
-                                        <p style="margin-bottom: 0px">{{ $message }}</p>
+                                    <p style="margin-bottom: 0px">{{ $message }}</p>
                                 </span>
                             @enderror
                         </div>
-
-                    <!--Пароль-->
-                    <!--                        <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels">Изменить пароль</label>
-                                <input class="form-control @error('old_password') is-invalid @enderror" type="password" id="old_password" name="old_password" class="form-control" placeholder="старый пароль">
-                                @error('old_password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <p style="margin-bottom: 0px">{{ $message }}</p>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="labels"></label>
-                                <input class="form-control @error('new_password') is-invalid @enderror" id="new_password" type="password" class="form-control" name="new_password" placeholder="новый пароль">
-
-                                @error('new_password')
-                                <span class="invalid-feedback" role="alert">
-                                            <p style="margin-bottom: 0px">{{ $message }}</p>
-                                        </span>
-                                @enderror
-                            </div>
-                        </div>-->
-
                     </div>
                     <button  class="btn btn-primary profile-button mt-4" type="submit">Save Profile</button>
                 </form>
