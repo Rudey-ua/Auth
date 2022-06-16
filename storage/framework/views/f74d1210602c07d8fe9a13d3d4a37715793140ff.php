@@ -32,6 +32,7 @@
                 <th>Update</th>
                 <th>Delete</th>
                 <th>View</th>
+                <th>VIP</th>
                 <th>Moderation</th>
             </tr>
             </thead>
@@ -67,6 +68,13 @@
                             <img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/72/72647.png" alt="">
                         </a>
                     </td>
+
+                    <?php if($ad['is_vip']): ?>
+                        <td><strong style="color: green;">Да</strong></td>
+                    <?php else: ?>
+                        <td><strong style="color: red;">Нет</strong></td>
+                    <?php endif; ?>
+
                     <?php if($ad['checked']): ?>
                         <td><strong style="color: green;">Одобрено</strong></td>
                     <?php else: ?>
