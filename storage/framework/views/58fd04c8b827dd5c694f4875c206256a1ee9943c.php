@@ -36,7 +36,7 @@
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="<?php echo e(route('profile')); ?>">Профиль</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('advertisement.store')); ?>">Добавить объяву</a></li>
+                            <li><a class="dropdown-item" href="<?php echo e(route('advertisement.create')); ?>">Добавить объяву</a></li>
                             <li><a class="dropdown-item" href="<?php echo e(route('advertisement.showAll')); ?>">Все объявления</a></li>
                             <li><a class="dropdown-item" href="<?php echo e(route('favourites.show')); ?>">Избранные</a></li>
                             <li>

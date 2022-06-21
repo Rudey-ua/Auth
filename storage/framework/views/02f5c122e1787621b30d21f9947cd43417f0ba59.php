@@ -15,12 +15,18 @@
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <div class="col-12">
-                        <img src="<?php echo e(asset($photos->first()['img_src'])); ?>" class="product-image" alt="Product Image">
+                        <?php if(count($photos) > 0): ?>
+                            <img src="../<?php echo e($photos->first()['img_src']); ?>" class="product-image" alt="Product Image">
+                        <?php elseif(count($photos) == 0): ?>
+                            <img src="https://www.ctilogistics.com/wp-content/uploads/2012/10/500x3004.gif" alt="">
+                        <?php endif; ?>
                     </div>
                     <div class="col-12 product-image-thumbs">
-                        <?php $__currentLoopData = $photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="product-image-thumb active"><img src="<?php echo e(asset($photo['img_src'])); ?>" alt="Product Image"></div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php if(count($photos) > 0): ?>
+                            <?php $__currentLoopData = $photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div class="product-image-thumb active"><img src="../<?php echo e($photo['img_src']); ?>" alt="Product Image"></div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php $__currentLoopData = $advertisement; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

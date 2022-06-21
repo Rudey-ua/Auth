@@ -7,17 +7,23 @@
     <div class="mb-2">
         <a style="text-decoration: none; color:black" href="{{ URL::previous() }}"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
     </div>
-    <div class="card card-solid">
+        <div class="card card-solid">
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <div class="col-12">
-                        <img src="../{{ $photos->first()['img_src'] }}" class="product-image" alt="Product Image">
+                        @if(count($photos) > 0)
+                            <img src="../{{ $photos->first()['img_src'] }}" class="product-image" alt="Product Image">
+                        @elseif(count($photos) == 0)
+                            <img src="https://www.ctilogistics.com/wp-content/uploads/2012/10/500x3004.gif" alt="">
+                        @endif
                     </div>
                     <div class="col-12 product-image-thumbs">
-                        @foreach($photos as $photo)
-                            <div class="product-image-thumb active"><img src="../{{ $photo['img_src'] }}" alt="Product Image"></div>
-                        @endforeach
+                        @if(count($photos) > 0)
+                            @foreach($photos as $photo)
+                                <div class="product-image-thumb active"><img src="../{{ $photo['img_src'] }}" alt="Product Image"></div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             @foreach($advertisement as $item)

@@ -18,23 +18,21 @@ class AdvertisementController extends Controller
         $user = Auth::user();
         $ads = Advertisement::where('user_id', $user['id'])->get();
 
-        return view('advertisement.showAll', [
-            'user' => $user,
-            'ads' => $ads
-        ]);
+        return view('advertisement.showAll', compact('user', 'ads'));
     }
 
     public function showAdvertisement($id){
 
         $advertisement = Advertisement::where([
-            ['id', '=', $id]])->get();
+            ['id', $id]])->get();
 
         $photos = Photo::where(['advertisement_id' => $id])->get();
 
-            return view('advertisement.showOne', [
-                'advertisement' => $advertisement,
-                'photos' => $photos
-            ]);
+        return view('advertisement.showOne', [
+            'advertisement' => $advertisement,
+            'photos' => $photos
+        ]);
+
     }
 
     public function index(){
@@ -54,15 +52,17 @@ class AdvertisementController extends Controller
             'category_id' => $request['category']
         ]);
 
-        foreach ($request->file('images') as $file) {
+        if($request->files->get('images') != null) {
+            foreach ($request->file('images') as $file) {
 
-            $path = $file->store('images', 'public');
-            $path = 'storage/' . $path;
+                $path = $file->store('images', 'public');
+                $path = 'storage/' . $path;
 
-            Photo::create([
-                'advertisement_id' => $advertisement['id'],
-                'img_src' => $path,
-            ]);
+                Photo::create([
+                    'advertisement_id' => $advertisement['id'],
+                    'img_src' => $path,
+                ]);
+            }
         }
 
         return redirect()->route('home');

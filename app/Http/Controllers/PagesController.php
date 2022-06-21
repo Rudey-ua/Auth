@@ -22,4 +22,15 @@ class PagesController extends Controller
             'advertisements' => Advertisement::all(),
         ]);
     }
+
+    public function indexCategory($id) {
+
+        $advertisements = Advertisement::where('category_id', $id)->get();
+        $category = Category::where('id', $id)->get();
+
+        return view('advertisement.category', [
+            'advertisements' => $advertisements,
+            'category' => $category
+        ]);
+    }
 }

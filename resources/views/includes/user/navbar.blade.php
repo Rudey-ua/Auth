@@ -35,7 +35,7 @@
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('profile') }}">Профиль</a></li>
-                            <li><a class="dropdown-item" href="{{ route('advertisement.store') }}">Добавить объяву</a></li>
+                            <li><a class="dropdown-item" href="{{ route('advertisement.create') }}">Добавить объяву</a></li>
                             <li><a class="dropdown-item" href="{{ route('advertisement.showAll') }}">Все объявления</a></li>
                             <li><a class="dropdown-item" href="{{ route('favourites.show') }}">Избранные</a></li>
                             <li>

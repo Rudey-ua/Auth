@@ -1,0 +1,64 @@
+.result{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.full_container{
+    position: relative;
+    display: inline-block;
+}
+
+.group_container{
+    position: relative;
+    display: inline-block;
+    background: url("https://cdn-icons-png.flaticon.com/512/45/45010.png") center/cover no-repeat;
+    background-color: #FFD64E;
+    background-size: 30px 30px;
+    height: 120px;
+    width: 140px;
+    margin: 5px;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.image_container{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease-in-out;
+}
+
+.delete_button{
+    position: absolute;
+    display: none;
+    background: url("https://cdn-icons-png.flaticon.com/512/3096/3096673.png") center/cover no-repeat;
+    background-color: aliceblue;
+    background-size: 25px 25px;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    left: 50%;
+    border-radius: 100px;
+    border: 0px;
+    cursor: pointer;
+    z-index: 20;
+    transform: translate(-50%, -50%);
+}
+
+.full_container:hover .delete_button{
+    display: block;
+}
+
+.full_container:hover .image_container{
+    filter: brightness(50%);
+    transition: filter 0.5s ease-in-out;
+}

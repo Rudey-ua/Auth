@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Advertisement\AdvertisementController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Favourite\FavouriteController;
+use App\Http\Controllers\Advertisement\FilterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,33 +22,20 @@ use App\Http\Controllers\Favourite\FavouriteController;
 |
 */
 
-
+Auth::routes();
 
 Route::get('/', [PagesController::class, 'index'])->name('home');
-
-Auth::routes();
 
     /*Social*/
 
 Route::get('/auth/github/redirect', function () { return Socialite::driver('github')->redirect(); });
 Route::get('/auth/github/callback', [SocialController::class, 'loginWithGitHub']);
 
-Route::group(['namespace' => 'Profile', 'prefix' => 'profile'], function(){
-
-    /*Profile*/
-
-    Route::get('/', [PagesController::class, 'showProfilePage'])->name('profile')->middleware('auth');
-    Route::post('/update', [ProfileController::class, 'update'])->middleware('auth');
-    Route::post('/update/image', [ProfileController::class, 'updateImage'])->middleware('auth');
-});
-
-
-
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
-
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
     /*Admin*/
 
     Route::group(['namespace' => 'Users'], function() {
+
         Route::get('/', [IndexController::class, 'index'])
             ->name('admin.index')
             ->middleware(['auth', 'admin']);
@@ -56,106 +43,100 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
         /*Admin-User`s-Advertisements*/
 
         Route::get('/users', [IndexController::class, 'users'])
-            ->name('admin.user.index')
-            ->middleware(['auth', 'admin']);
+            ->name('admin.user.index');
 
         Route::get('users/{id}', [IndexController::class, 'showAllAdvertisements'])
-            ->middleware(['auth', 'admin'])
             ->name('admin.user.showAll');
 
         Route::get('/user/{user_id}/advertisement/{id}', [IndexController::class, 'showOneAdvertisement'])
-            ->middleware(['auth', 'admin'])
             ->name('admin.advertisements.showOne');
 
         Route::post('/advertisement/updatePage', [IndexController::class, 'updatePage'])
-            ->name('admin.advertisement.updatePage')
-            ->middleware('auth');
+            ->name('admin.advertisement.updatePage');
 
         Route::post('/advertisement/update', [IndexController::class, 'updateAdvertisement'])
-            ->name('admin.advertisement.update')
-            ->middleware('auth');
+            ->name('admin.advertisement.update');
 
         Route::post('/advertisement/delete', [IndexController::class, 'destroy'])
-            ->name('admin.advertisement.destroy')
-            ->middleware('auth');
+            ->name('admin.advertisement.destroy');
 
         Route::post('/advertisement/moderate', [IndexController::class, 'moderate'])
-            ->name('admin.advertisement.moderate')
-            ->middleware(['auth', 'admin']);
+            ->name('admin.advertisement.moderate');
 
         Route::post('/advertisement/vip', [IndexController::class, 'madeVip'])
-            ->name('admin.advertisement.madeVip')
-            ->middleware(['auth', 'admin']);
+            ->name('admin.advertisement.madeVip');
 
         Route::post('/advertisement/removeVip', [IndexController::class, 'removeVip'])
-            ->name('admin.advertisement.removeVip')
-            ->middleware(['auth', 'admin']);
+            ->name('admin.advertisement.removeVip');
 
         /*Admin-Profile*/
 
         Route::post('/users/updatePage', [IndexController::class, 'updateUser'])
-            ->name('admin.user.updatePage')
-            ->middleware(['auth', 'admin']);
+            ->name('admin.user.updatePage');
 
         Route::post('users/update', [IndexController::class, 'update'])
-            ->middleware(['auth', 'admin'])
             ->name('admin.user.update');
 
         Route::post('user/update/image', [IndexController::class, 'updateImage'])
-            ->middleware(['auth', 'admin'])
             ->name('admin.user.updateImage');
-
-
     });
+});
+
+Route::group(['namespace' => 'Profile', 'prefix' => 'profile', 'middleware' => 'auth'], function(){
+    /*Profile*/
+
+    Route::get('/', [PagesController::class, 'showProfilePage'])->name('profile');
+    Route::post('/update', [ProfileController::class, 'update']);
+    Route::post('/update/image', [ProfileController::class, 'updateImage']);
 });
 
 Route::group(['namespace' => 'Advertisement'], function(){
 
-    /*Advertisement*/
+    Route::group(['middleware' => 'auth'], function(){
+        /*Advertisement*/
 
-    Route::get('/advertisements',[AdvertisementController::class, 'showAllAdvertisements'])
-        ->name('advertisement.showAll')
-        ->middleware('auth');
+        Route::get('/advertisements',[AdvertisementController::class, 'showAllAdvertisements'])
+            ->name('advertisement.showAll');
 
-    Route::get('/advertisement/create', [AdvertisementController::class, 'index'])
-        ->name('advertisement.index')
-        ->middleware('auth');
+        Route::get('/advertisement/create', [AdvertisementController::class, 'index'])
+            ->name('advertisement.create');
 
-    Route::post('/advertisement/create', [AdvertisementController::class, 'store'])
-        ->name('advertisement.store')
-        ->middleware('auth');
+        Route::post('/advertisement/store', [AdvertisementController::class, 'store'])
+            ->name('advertisement.store');
 
-    Route::post('/advertisement/update', [AdvertisementController::class, 'update'])
-        ->name('advertisement.update')
-        ->middleware('auth');
+        Route::post('/advertisement/update', [AdvertisementController::class, 'update'])
+            ->name('advertisement.update');
 
-    Route::post('/advertisement/delete', [AdvertisementController::class, 'destroy'])
-        ->name('advertisement.destroy')
-        ->middleware('auth');
+        Route::post('/advertisement/delete', [AdvertisementController::class, 'destroy'])
+            ->name('advertisement.destroy');
 
-    Route::post('/advertisement/updatePage', [AdvertisementController::class, 'updatePage'])
-        ->name('advertisement.updatePage')
-        ->middleware('auth');
+        Route::post('/advertisement/updatePage', [AdvertisementController::class, 'updatePage'])
+            ->name('advertisement.updatePage');
+    });
+
+    /* Advertisement-View */
 
     Route::get('/advertisement/{id}', [AdvertisementController::class, 'showAdvertisement'])
         ->name('advertisement.view');
 
-    /*Category*/
+    /* Category-View */
 
-    Route::get('/category/{id}', [CategoryController::class, 'index']);
+    Route::get('/category/{id}', [PagesController::class, 'indexCategory']);
 
-    /*Favourite*/
 
-    Route::get('favourites', [FavouriteController::class, 'index'])
-        ->name('favourites.show')
-        ->middleware('auth');
+    Route::group(['middleware' => 'auth'], function(){
+        /*Favourite*/
 
-    Route::post('favourite/add', [FavouriteController::class, 'add'])
-        ->name('favourite.add')
-        ->middleware('auth');
+        Route::get('favourites', [FavouriteController::class, 'index'])
+            ->name('favourites.show');
 
-    Route::post('favourite/delete', [FavouriteController::class, 'delete'])
-        ->name('favourite.delete')
-        ->middleware('auth');
+        Route::post('favourite/add', [FavouriteController::class, 'add'])
+            ->name('favourite.add');
+
+        Route::post('favourite/delete', [FavouriteController::class, 'delete'])
+            ->name('favourite.delete');
+    });
+
+    Route::get('/filter', [FilterController::class, 'filter'])->name('filter');
 });
 
