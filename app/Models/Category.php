@@ -13,4 +13,9 @@ class Category extends Model
     {
         return $this->hasMany(Advertisement::class, 'category_id', 'id');
     }
+
+    public function getSubCategories()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
 }

@@ -16,7 +16,7 @@
                 <div class="col-12 col-sm-6">
                     <div class="col-12">
                         @if(count($photos) > 0)
-                            <img src="../{{ $photos->first()['img_src'] }}" class="product-image" alt="Product Image">
+                            <img src="{{ asset($photos->first()['img_src']) }}" class="product-image" alt="Product Image">
                         @elseif(count($photos) == 0)
                             <img src="https://www.ctilogistics.com/wp-content/uploads/2012/10/500x3004.gif" alt="">
                         @endif
@@ -24,7 +24,7 @@
                     <div class="col-12 product-image-thumbs">
                         @if(count($photos) > 0)
                             @foreach($photos as $photo)
-                                <div class="product-image-thumb active"><img src="../{{ $photo['img_src'] }}" alt="Product Image"></div>
+                                <div class="product-image-thumb active"><img src="{{ asset($photo['img_src']) }}" alt="Product Image"></div>
                             @endforeach
                         @endif
                     </div>

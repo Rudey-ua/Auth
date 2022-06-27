@@ -1,8 +1,7 @@
 @include('includes.user.head')
-@include('includes.user.navbar')
 
 <body>
-
+@include('includes.user.navbar')
 
 <div class="container mt-4">
 
@@ -19,20 +18,24 @@
         </div>
     </form>
 
-    <h2 style="text-align: center">Главные рубрики</h2>
+    <h2 style="text-align: center" class="mb-4">Главные рубрики</h2>
 
-        <div style="margin-left: 70px" class="col-md-12">
-            <ul class="list-group list-group-horizontal">
-                @foreach($categories as $category)
-                    <a class="mt-4" style="text-decoration: none" href="/category/{{ $category['id']}}">
-                        <li class="list-group-item">
-                            {{ $category['title'] }}
-                        </li>
+    <div class="container" style="margin-left: 50px">
+        @foreach($categories as $category)
+            <div class="dropdown" style="display: inline-block;">
+                @if($category->parent_id == null)
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ $category['title'] }}
                     </a>
-                @endforeach
-            </ul>
-        </div>
-
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        @foreach($category->getSubCategories as $item)
+                            <li><a class="dropdown-item" href="/category/{{ $item->id }}">{{ $item->title }}</a></li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        @endforeach
+    </div>
 
     <h2 class="mt-4 mb-4" style="text-align: center">VIP-объявления</h2>
 
@@ -53,7 +56,7 @@
                                 <h5 class="card-title">{{ $advertisement['title'] }}</h5>
                             </a>
                             <p class="card-text"><small class="text-muted">{{ $advertisement['created_at'] }}</small></p>
-                            <span class="card-text"><strong>{{ $advertisement['price'] }} грн.</strong></span>
+                            <span class="card-text"><strong>{{ number_format($advertisement['price'], 0, ',', '.') }} грн.</strong></span>
                             <p style="font-size: 13px; margin-bottom: 0; margin-top: 5px;">Пользователь - <strong>{{ $advertisement->user['name'] }}</strong></p>
                         </div>
                     </div>

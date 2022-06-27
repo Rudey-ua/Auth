@@ -1,8 +1,7 @@
 <?php echo $__env->make('includes.user.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php echo $__env->make('includes.user.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <body>
-
+<?php echo $__env->make('includes.user.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <div class="container mt-4">
 
@@ -19,21 +18,25 @@
         </div>
     </form>
 
-    <h2 style="text-align: center">Главные рубрики</h2>
+    <h2 style="text-align: center" class="mb-4">Главные рубрики</h2>
 
-        <div style="margin-left: 70px" class="col-md-12">
-            <ul class="list-group list-group-horizontal">
-                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <a class="mt-4" style="text-decoration: none" href="/category/<?php echo e($category['id']); ?>">
-                        <li class="list-group-item">
-                            <?php echo e($category['title']); ?>
+    <div class="container" style="margin-left: 50px">
+        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="dropdown" style="display: inline-block;">
+                <?php if($category->parent_id == null): ?>
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php echo e($category['title']); ?>
 
-                        </li>
                     </a>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </ul>
-        </div>
-
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <?php $__currentLoopData = $category->getSubCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><a class="dropdown-item" href="/category/<?php echo e($item->id); ?>"><?php echo e($item->title); ?></a></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
 
     <h2 class="mt-4 mb-4" style="text-align: center">VIP-объявления</h2>
 
@@ -54,7 +57,7 @@
                                 <h5 class="card-title"><?php echo e($advertisement['title']); ?></h5>
                             </a>
                             <p class="card-text"><small class="text-muted"><?php echo e($advertisement['created_at']); ?></small></p>
-                            <span class="card-text"><strong><?php echo e($advertisement['price']); ?> грн.</strong></span>
+                            <span class="card-text"><strong><?php echo e(number_format($advertisement['price'], 0, ',', '.')); ?> грн.</strong></span>
                             <p style="font-size: 13px; margin-bottom: 0; margin-top: 5px;">Пользователь - <strong><?php echo e($advertisement->user['name']); ?></strong></p>
                         </div>
                     </div>

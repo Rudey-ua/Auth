@@ -33,7 +33,7 @@
                     <hr>
                     <div class="bg-gray py-2 px-3 mt-4">
                         <h2 class="mb-0">
-                            {{ number_format($item['price'], 2, ',', '.') }} UAH
+                            {{ number_format($item['price'], 0, ',', '.') }} UAH
                         </h2>
                     </div>
 
