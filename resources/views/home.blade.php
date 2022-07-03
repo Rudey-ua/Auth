@@ -5,15 +5,13 @@
 
 <div class="container mt-4">
 
-    <form action="{{ route('filter') }}" method="GET">
+    <form action="{{ route('advertisement.search_result') }}" method="GET">
         <div class="row height d-flex justify-content-center align-items-center">
             <div class="col-md-8">
-                <form action="" class="">
-                    <div class="input-group mb-3">
-                        <input name="title" type="text" class="form-control form-control-lg" placeholder="Search Here">
-                        <button type="submit" class="input-group-text btn-success"><i class="bi bi-search"></i>Search</button>
-                    </div>
-                </form>
+                <div class="input-group mb-3">
+                    <input required name="title" type="text" class="form-control form-control-lg" placeholder="Search Here">
+                    <button type="submit" class="input-group-text btn-success"><i class="bi bi-search"></i>Search</button>
+                </div>
             </div>
         </div>
     </form>

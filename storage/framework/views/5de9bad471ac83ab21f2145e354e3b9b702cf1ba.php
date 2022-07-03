@@ -1,13 +1,18 @@
 <?php echo $__env->make('includes.user.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php echo $__env->make('includes.user.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php echo $__env->make('includes.user.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <body>
+<?php echo $__env->make('includes.user.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <div class="container mt-4">
     <div class="mb-3">
         <a style="text-decoration: none; color:black" href="<?php echo e(URL::previous()); ?>"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
     </div>
+
+    <?php echo $__env->make('includes.filters.cars', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
+
+
     <div class= "row">
         <h3><?php echo e($category->first()['title']); ?></h3>
         <?php $__currentLoopData = $advertisements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $advertisement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -25,7 +30,7 @@
                             <h5 class="card-title"><?php echo e($advertisement['title']); ?></h5>
                         </a>
                         <p class="card-text"><small class="text-muted"><?php echo e($advertisement['created_at']); ?></small></p>
-                        <span class="card-text"><strong><?php echo e($advertisement['price']); ?> грн.</strong></span>
+                        <span class="card-text"><strong><?php echo e(number_format($advertisement['price'], 0, ',', '.')); ?> грн.</strong></span>
                         <p style="font-size: 13px; margin-bottom: 0; margin-top: 5px;">Пользователь - <strong><?php echo e($advertisement->user['name']); ?></strong></p>
                     </div>
                 </div>

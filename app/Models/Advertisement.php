@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Filters\QueryFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
+use Spatie\QueryBuilder\Filters\Filter;
 
 class Advertisement extends Model
 {
@@ -67,4 +71,6 @@ class Advertisement extends Model
     public function photos(){
         return $this->hasMany(Photo::class, 'advertisement_id', 'id');
     }
+
 }
+

@@ -1,13 +1,24 @@
 @include('includes.user.head')
-@include('includes.user.head')
-@include('includes.user.navbar')
 
 <body>
+@include('includes.user.navbar')
 
 <div class="container mt-4">
     <div class="mb-3">
         <a style="text-decoration: none; color:black" href="{{ URL::previous() }}"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
     </div>
+
+    @include('includes.filters.cars')
+
+
+{{--@switch($category->first()->id)
+        @case(9)
+            @break;
+        @case(12)
+            @include('includes.filters.flats')
+            @break;
+    @endswitch--}}
+
     <div class= "row">
         <h3>{{ $category->first()['title'] }}</h3>
         @foreach($advertisements as $advertisement)
@@ -25,7 +36,7 @@
                             <h5 class="card-title">{{ $advertisement['title'] }}</h5>
                         </a>
                         <p class="card-text"><small class="text-muted">{{ $advertisement['created_at'] }}</small></p>
-                        <span class="card-text"><strong>{{ $advertisement['price'] }} грн.</strong></span>
+                        <span class="card-text"><strong>{{ number_format($advertisement['price'], 0, ',', '.') }} грн.</strong></span>
                         <p style="font-size: 13px; margin-bottom: 0; margin-top: 5px;">Пользователь - <strong>{{ $advertisement->user['name'] }}</strong></p>
                     </div>
                 </div>

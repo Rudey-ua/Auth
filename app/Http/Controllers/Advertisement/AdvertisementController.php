@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Advertisement;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\Photo;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\Category;
-
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\Filters\Filter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AdvertisementController extends Controller
 {
@@ -96,8 +100,8 @@ class AdvertisementController extends Controller
 
             /*Clothing*/
 
-            'gender' => $request['gender'],
-            'size' => $request['size'],
+            /*'gender' => $request['gender'],
+            'size' => $request['size'],*/
         ]);
 
         if($request->files->get('images') != null) {
@@ -142,4 +146,60 @@ class AdvertisementController extends Controller
         return redirect()->route('advertisement.showAll');
     }
 
+    public function searchByTitle(Request $request) {
+        if(isset($request->title)) {
+            $search_request = $request->title;
+            $advertisements = Advertisement::where('title', 'LIKE', '%' . $request->title . '%')->get();
+            return view('advertisement.search_result', compact(['advertisements', 'search_request']));
+        }
+        return redirect()->route('home');
+    }
+
+    public function filter(Request $request)
+    {
+
+        $category_id = $request['category_id'];
+        $category = Category::find($category_id);
+
+        $advertisements = Advertisement::where('category_id', $category_id);
+
+        if(isset($request['engine_type'])){
+            $advertisements->whereIn('engine_type', $request['engine_type']);
+        }
+
+        if(isset($request['type'])){
+            $advertisements->whereIn('type', $request['type']);
+        }
+
+        if(isset($request['transmission'])){
+            $advertisements->whereIn('transmission', $request['transmission']);
+        }
+
+        if(isset($request['type_of_drive'])){
+            $advertisements->whereIn('type_of_drive', $request['type_of_drive']);
+        }
+
+        if(isset($request['color'])){
+            $advertisements->whereIn('color', $request['color']);
+        }
+
+        if(isset($request['seats'])){
+            $advertisements->whereIn('seats', $request['seats']);
+        }
+
+        if(isset($request['from']) || isset($request['to'])){
+            $from = (int)$request['from'];
+            $to = (int)$request['to'];
+
+            $advertisements->whereBetween('price', [$from, $to]);
+        }
+
+        $advertisements = $advertisements->get();
+
+        return view('advertisement.category', [
+            'advertisements' => $advertisements,
+            'category'=> $category
+        ]);
+
+    }
 }

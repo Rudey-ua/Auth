@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Users\IndexController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Advertisement\AdvertisementController;
 use App\Http\Controllers\Favourite\FavouriteController;
-use App\Http\Controllers\Advertisement\FilterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,9 +119,14 @@ Route::group(['namespace' => 'Advertisement'], function(){
     Route::get('/advertisement/{id}', [AdvertisementController::class, 'showAdvertisement'])
         ->name('advertisement.view');
 
+    Route::get('/search', [AdvertisementController::class, 'searchByTitle'])
+        ->name('advertisement.search_result');
+
     /* Category-View */
 
-    Route::get('/category/{id}', [PagesController::class, 'indexCategory']);
+    Route::get('/category/{id}', [PagesController::class, 'indexCategory'])->name('category');
+
+    Route::get('/category/{id}/filter', [AdvertisementController::class, 'filter'])->name('filter');
 
 
     Route::group(['middleware' => 'auth'], function(){
@@ -136,7 +141,16 @@ Route::group(['namespace' => 'Advertisement'], function(){
         Route::post('favourite/delete', [FavouriteController::class, 'delete'])
             ->name('favourite.delete');
     });
-
-    Route::get('/filter', [FilterController::class, 'filter'])->name('filter');
 });
+
+Route::group(['middleware' => 'auth'], function(){
+    /*Favourite*/
+    Route::get('/payment', [PaymentController::class, 'index']);
+    Route::post('/charge', [PaymentController::class, 'charge'])->name('charge');
+    Route::get('/success', [PaymentController::class, 'success']);
+    Route::get('/error', [PaymentController::class, 'error']);
+});
+
+
+
 
