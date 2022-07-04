@@ -23,7 +23,7 @@
                                 <h5 class="card-title"><?php echo e($advertisement['title']); ?></h5>
                             </a>
                             <p class="card-text"><small class="text-muted"><?php echo e($advertisement['created_at']); ?></small></p>
-                            <span class="card-text"><strong><?php echo e($advertisement['price']); ?> грн.</strong></span>
+                            <span class="card-text"><strong><?php echo e($advertisement['price']); ?> USD</strong></span>
 
                             <form method="post" class="mt-1" action="<?php echo e(route('favourite.delete')); ?>">
                                 <?php echo csrf_field(); ?>

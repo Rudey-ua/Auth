@@ -86,6 +86,7 @@ Route::group(['namespace' => 'Profile', 'prefix' => 'profile', 'middleware' => '
     /*Profile*/
 
     Route::get('/', [PagesController::class, 'showProfilePage'])->name('profile');
+    Route::get('/purchases', [PagesController::class, 'showPurchasesPage'])->name('purchases');
     Route::post('/update', [ProfileController::class, 'update']);
     Route::post('/update/image', [ProfileController::class, 'updateImage']);
 });

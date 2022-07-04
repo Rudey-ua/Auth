@@ -23,7 +23,7 @@
                                 <h5 class="card-title">{{ $advertisement['title'] }}</h5>
                             </a>
                             <p class="card-text"><small class="text-muted">{{ $advertisement['created_at'] }}</small></p>
-                            <span class="card-text"><strong>{{ $advertisement['price'] }} грн.</strong></span>
+                            <span class="card-text"><strong>{{ $advertisement['price'] }} USD</strong></span>
 
                             <form method="post" class="mt-1" action="{{ route('favourite.delete') }}">
                                 @csrf

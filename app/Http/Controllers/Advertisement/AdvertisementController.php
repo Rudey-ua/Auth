@@ -27,8 +27,13 @@ class AdvertisementController extends Controller
 
     public function showAdvertisement($id){
 
-        $advertisement = Advertisement::where([
-            ['id', $id]])->get();
+        $advertisement = Advertisement::where(['id' => $id])
+            ->where(['checked' => 1])
+            ->get();
+
+        if(count($advertisement) == 0){
+            return abort(403);
+        }
 
         $photos = Photo::where(['advertisement_id' => $id])->get();
 
@@ -149,7 +154,9 @@ class AdvertisementController extends Controller
     public function searchByTitle(Request $request) {
         if(isset($request->title)) {
             $search_request = $request->title;
-            $advertisements = Advertisement::where('title', 'LIKE', '%' . $request->title . '%')->get();
+            $advertisements = Advertisement::where('title', 'LIKE', '%' . $request->title . '%')
+                    ->where(['checked' => 1])
+                    ->get();
             return view('advertisement.search_result', compact(['advertisements', 'search_request']));
         }
         return redirect()->route('home');

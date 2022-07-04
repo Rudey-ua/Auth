@@ -39,7 +39,7 @@
 
             <div class="form-group">
                 <label>Цена</label>
-                <input required name="price" type="number" min="0" placeholder="грн" class="form-control" style="width:30%;height:50px;font-size: 18px;">
+                <input required name="price" type="number" min="0" placeholder="USD" class="form-control" style="width:30%;height:50px;font-size: 18px;">
             </div>
 
             <div id="result">

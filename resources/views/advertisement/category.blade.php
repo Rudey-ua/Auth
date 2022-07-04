@@ -8,11 +8,10 @@
         <a style="text-decoration: none; color:black" href="{{ URL::previous() }}"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
     </div>
 
-    @include('includes.filters.cars')
-
 
 {{--@switch($category->first()->id)
         @case(9)
+            @include('includes.filters.cars')
             @break;
         @case(12)
             @include('includes.filters.flats')
@@ -36,7 +35,7 @@
                             <h5 class="card-title">{{ $advertisement['title'] }}</h5>
                         </a>
                         <p class="card-text"><small class="text-muted">{{ $advertisement['created_at'] }}</small></p>
-                        <span class="card-text"><strong>{{ number_format($advertisement['price'], 0, ',', '.') }} грн.</strong></span>
+                        <span class="card-text"><strong>{{ number_format($advertisement['price'], 0, ',', '.') }} USD</strong></span>
                         <p style="font-size: 13px; margin-bottom: 0; margin-top: 5px;">Пользователь - <strong>{{ $advertisement->user['name'] }}</strong></p>
                     </div>
                 </div>

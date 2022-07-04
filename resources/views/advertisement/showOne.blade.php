@@ -1,13 +1,12 @@
 @include('includes.user.head')
 @include('includes.user.navbar')
-
 <body>
 
 <div class="container mt-4">
     <div class="mb-2">
         <a style="text-decoration: none; color:black" href="{{ URL::previous() }}"><img style="width: 20px"
-                                                                                        src="https://cdn-icons-png.flaticon.com/512/860/860790.png"
-                                                                                        alt="">Назад</a>
+        src="https://cdn-icons-png.flaticon.com/512/860/860790.png"
+        alt="">Назад</a>
     </div>
     <div class="card card-solid">
         <div class="card-body">
@@ -36,19 +35,29 @@
                         <hr>
                         <div class="bg-gray py-2 px-3 mt-4">
                             <h2 class="mb-0">
-                                {{ number_format($item['price'], 0, ',', '.') }} UAH
+                                {{ number_format($item['price'], 0, ',', '.') }} USD
                             </h2>
                         </div>
 
                         @auth()
+                            @if(\Illuminate\Support\Facades\Auth::user()->getAuthIdentifier() != $item->user->id)
                                 <div class="mt-4">
-                                    <form method="post" action="{{ route('favourite.add') }}">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item['id'] }}">
-                                        <button style="width: 200px; height: 40px" type="submit" class="btn btn-dark">
-                                            Add to Wishlist
-                                        </button>
-                                    </form>
+
+                                    @php
+                                        $statement = \App\Models\Favourite::where('advertisement_id', $item['id'])
+                                        ->where('user_id', \Illuminate\Support\Facades\Auth::user()->getAuthIdentifier())
+                                        ->get()
+                                    @endphp
+
+                                    @if(count($statement) == 0)
+                                        <form method="post" action="{{ route('favourite.add') }}">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $item['id'] }}">
+                                            <button style="width: 200px; height: 40px" type="submit" class="btn btn-dark">
+                                                Добавить в избранное
+                                            </button>
+                                        </form>
+                                    @endif
 
                                     <form class="mt-2" action="{{ route('charge') }}" method="post">
                                         @csrf
@@ -61,7 +70,7 @@
                                     </form>
                                 </div>
                             </div>
-
+                        @endif
                     @endauth
 
                     @guest()

@@ -7,7 +7,7 @@
 <div class="container">
 
     <div class="mb-3 mt-3">
-        <a style="text-decoration: none; color:black" href="{{ URL::previous() }}"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
+        <a style="text-decoration: none; color:black" href="{{ route('admin.user.showAll', $user_id) }}"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
     </div>
 
     <div class="card card-solid">
@@ -36,7 +36,7 @@
                         <hr>
                         <div class="bg-gray py-2 px-3 mt-4 mb-2">
                             <h2 class="mb-0">
-                                {{ number_format($item['price'], 2, ',', '.') }} UAH
+                                {{ number_format($item['price'], 2, ',', '.') }} USD
                             </h2>
                         </div>
 
@@ -51,27 +51,29 @@
                             @endif
                         </form>
 
-                        <form action="{{ route('admin.advertisement.madeVip') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="advertisement_id" value="{{ $item['id'] }}">
-                            <input type="hidden" name="user_id" value="{{ $user_id }}">
-                            @if($item['is_vip'] == 0)
-                                <button type="submit" class="btn btn-success mt-2">
-                                    Присвоить VIP-статус
-                                </button>
-                            @endif
-                        </form>
+                        @if($item['checked'])
+                            <form action="{{ route('admin.advertisement.madeVip') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="advertisement_id" value="{{ $item['id'] }}">
+                                <input type="hidden" name="user_id" value="{{ $user_id }}">
+                                @if($item['is_vip'] == 0)
+                                    <button type="submit" class="btn btn-success mt-2">
+                                        Присвоить VIP-статус
+                                    </button>
+                                @endif
+                            </form>
 
-                        <form action="{{ route('admin.advertisement.removeVip') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="advertisement_id" value="{{ $item['id'] }}">
-                            <input type="hidden" name="user_id" value="{{ $user_id }}">
-                            @if($item['is_vip'] == 1)
-                                <button type="submit" class="btn btn-danger mt-2">
-                                    Лишить VIP-статуса
-                                </button>
-                            @endif
-                        </form>
+                            <form action="{{ route('admin.advertisement.removeVip') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="advertisement_id" value="{{ $item['id'] }}">
+                                <input type="hidden" name="user_id" value="{{ $user_id }}">
+                                @if($item['is_vip'] == 1)
+                                    <button type="submit" class="btn btn-danger mt-2">
+                                        Лишить VIP-статуса
+                                    </button>
+                                @endif
+                            </form>
+                        @endif
                     </div>
                 @endforeach
             </div>

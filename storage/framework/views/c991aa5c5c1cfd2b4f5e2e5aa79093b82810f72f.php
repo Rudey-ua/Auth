@@ -40,7 +40,7 @@
 
     <div class= "row d-inline-flex">
         <?php $__currentLoopData = $advertisements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $advertisement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <?php if($advertisement['is_vip']): ?>
+            <?php if($advertisement['checked'] && $advertisement['is_vip']): ?>
                 <div class ="col-12 col-sm-6 col-md-3 p-2">
                     <div class="card h-100">
                         <a href="<?php echo e(route('advertisement.view', $advertisement['id'])); ?>">
@@ -55,17 +55,15 @@
                                 <h5 class="card-title"><?php echo e($advertisement['title']); ?></h5>
                             </a>
                             <p class="card-text"><small class="text-muted"><?php echo e($advertisement['created_at']); ?></small></p>
-                            <span class="card-text"><strong><?php echo e(number_format($advertisement['price'], 0, ',', '.')); ?> грн.</strong></span>
+                            <span class="card-text"><strong><?php echo e(number_format($advertisement['price'], 0, ',', '.')); ?> USD</strong></span>
                             <p style="font-size: 13px; margin-bottom: 0; margin-top: 5px;">Пользователь - <strong><?php echo e($advertisement->user['name']); ?></strong></p>
                         </div>
                     </div>
                 </div>
             <?php endif; ?>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
     </div>
 </div>
-
 </body>
 
 

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('price');
             $table->boolean('checked')->default(0);
             $table->boolean('is_vip')->default(0);
+            $table->boolean('hidden')->default(0);
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

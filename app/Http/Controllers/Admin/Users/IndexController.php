@@ -145,14 +145,18 @@ class IndexController extends Controller
         $advertisement['checked'] = 1;
         $advertisement->save();
 
-        return redirect()->route('admin.user.showAll', $request['user_id']);
+        $path = 'admin/user/' . $request['user_id'] . '/advertisement/' . $request['advertisement_id'];
+        return redirect()->to($path);
     }
 
     public function madeVip(Request $request) {
+
         $advertisement = Advertisement::find($request['advertisement_id']);
         $advertisement['is_vip'] = 1;
         $advertisement->save();
-        return redirect()->route('admin.user.showAll', $request['user_id']);
+        $path = 'admin/user/' . $request['user_id'] . '/advertisement/' . $request['advertisement_id'];
+
+        return redirect()->to($path);
     }
 
     public function removeVip(Request $request) {
@@ -160,6 +164,8 @@ class IndexController extends Controller
         $advertisement['is_vip'] = 0;
         $advertisement->save();
 
-        return redirect()->route('admin.user.showAll', $request['user_id']);
+        $path = 'admin/user/' . $request['user_id'] . '/advertisement/' . $request['advertisement_id'];
+
+        return redirect()->to($path);
     }
 }

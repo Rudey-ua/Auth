@@ -39,7 +39,7 @@
 
     <div class= "row d-inline-flex">
         @foreach($advertisements as $advertisement)
-            @if($advertisement['is_vip'])
+            @if($advertisement['checked'] && $advertisement['is_vip'])
                 <div class ="col-12 col-sm-6 col-md-3 p-2">
                     <div class="card h-100">
                         <a href="{{ route('advertisement.view', $advertisement['id']) }}">
@@ -54,17 +54,15 @@
                                 <h5 class="card-title">{{ $advertisement['title'] }}</h5>
                             </a>
                             <p class="card-text"><small class="text-muted">{{ $advertisement['created_at'] }}</small></p>
-                            <span class="card-text"><strong>{{ number_format($advertisement['price'], 0, ',', '.') }} грн.</strong></span>
+                            <span class="card-text"><strong>{{ number_format($advertisement['price'], 0, ',', '.') }} USD</strong></span>
                             <p style="font-size: 13px; margin-bottom: 0; margin-top: 5px;">Пользователь - <strong>{{ $advertisement->user['name'] }}</strong></p>
                         </div>
                     </div>
                 </div>
             @endif
         @endforeach
-
     </div>
 </div>
-
 </body>
 
 

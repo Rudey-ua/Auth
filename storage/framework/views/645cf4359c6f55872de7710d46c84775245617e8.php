@@ -7,7 +7,7 @@
 <div class="container">
 
     <div class="mb-3 mt-3">
-        <a style="text-decoration: none; color:black" href="<?php echo e(URL::previous()); ?>"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
+        <a style="text-decoration: none; color:black" href="<?php echo e(route('admin.user.showAll', $user_id)); ?>"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
     </div>
 
     <div class="card card-solid">
@@ -36,7 +36,7 @@
                         <hr>
                         <div class="bg-gray py-2 px-3 mt-4 mb-2">
                             <h2 class="mb-0">
-                                <?php echo e(number_format($item['price'], 2, ',', '.')); ?> UAH
+                                <?php echo e(number_format($item['price'], 2, ',', '.')); ?> USD
                             </h2>
                         </div>
 
@@ -51,27 +51,29 @@
                             <?php endif; ?>
                         </form>
 
-                        <form action="<?php echo e(route('admin.advertisement.madeVip')); ?>" method="post">
-                            <?php echo csrf_field(); ?>
-                            <input type="hidden" name="advertisement_id" value="<?php echo e($item['id']); ?>">
-                            <input type="hidden" name="user_id" value="<?php echo e($user_id); ?>">
-                            <?php if($item['is_vip'] == 0): ?>
-                                <button type="submit" class="btn btn-success mt-2">
-                                    Присвоить VIP-статус
-                                </button>
-                            <?php endif; ?>
-                        </form>
+                        <?php if($item['checked']): ?>
+                            <form action="<?php echo e(route('admin.advertisement.madeVip')); ?>" method="post">
+                                <?php echo csrf_field(); ?>
+                                <input type="hidden" name="advertisement_id" value="<?php echo e($item['id']); ?>">
+                                <input type="hidden" name="user_id" value="<?php echo e($user_id); ?>">
+                                <?php if($item['is_vip'] == 0): ?>
+                                    <button type="submit" class="btn btn-success mt-2">
+                                        Присвоить VIP-статус
+                                    </button>
+                                <?php endif; ?>
+                            </form>
 
-                        <form action="<?php echo e(route('admin.advertisement.removeVip')); ?>" method="post">
-                            <?php echo csrf_field(); ?>
-                            <input type="hidden" name="advertisement_id" value="<?php echo e($item['id']); ?>">
-                            <input type="hidden" name="user_id" value="<?php echo e($user_id); ?>">
-                            <?php if($item['is_vip'] == 1): ?>
-                                <button type="submit" class="btn btn-danger mt-2">
-                                    Лишить VIP-статуса
-                                </button>
-                            <?php endif; ?>
-                        </form>
+                            <form action="<?php echo e(route('admin.advertisement.removeVip')); ?>" method="post">
+                                <?php echo csrf_field(); ?>
+                                <input type="hidden" name="advertisement_id" value="<?php echo e($item['id']); ?>">
+                                <input type="hidden" name="user_id" value="<?php echo e($user_id); ?>">
+                                <?php if($item['is_vip'] == 1): ?>
+                                    <button type="submit" class="btn btn-danger mt-2">
+                                        Лишить VIP-статуса
+                                    </button>
+                                <?php endif; ?>
+                            </form>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>

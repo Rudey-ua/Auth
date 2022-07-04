@@ -16,10 +16,13 @@
 
 <!--End-Navbar-->
 
+
 <div class="container rounded bg-white mb-4">
     <div class="mt-2">
         <a style="text-decoration: none; color:black" href="{{ URL::previous() }}"><img style="width: 20px" src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="">Назад</a>
     </div>
+
+
     <div class="row">
         <div class="col-md-5 border-right">
             <form action="/profile/update/image" method="post" enctype="multipart/form-data">
@@ -38,6 +41,8 @@
                         <input required name="image" class="form-control" type="file" id="formFile">
                     </div>
                     <button type="submit" class="btn btn-success col-md-6 mt-2">Изменить аватар</button>
+                    <a class="mt-3 mb-3 btn btn-success col-md-6" href="{{ route('purchases') }}">Мои заказы</a>
+
                 </div>
             </form>
         </div>
@@ -84,7 +89,8 @@
                     <button  class="btn btn-primary profile-button mt-4" type="submit">Save Profile</button>
                 </form>
 
-                @if (Session::has('success_message'))
+
+            @if (Session::has('success_message'))
                     <div class="alert alert-success mt-4">
                         <strong>Success!</strong> Изменения были успешно применены
                     </div>

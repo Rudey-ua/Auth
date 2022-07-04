@@ -26,7 +26,7 @@
                             </a>
                             <p class="card-text"><small class="text-muted"><?php echo e($advertisement['created_at']); ?></small>
                             </p>
-                            <span class="card-text"><strong><?php echo e(number_format($advertisement['price'], 0, ',', '.')); ?> грн.</strong></span>
+                            <span class="card-text"><strong><?php echo e(number_format($advertisement['price'], 0, ',', '.')); ?> USD</strong></span>
                             <p style="font-size: 13px; margin-bottom: 0; margin-top: 5px;">Пользователь -
                                 <strong><?php echo e($advertisement->user['name']); ?></strong></p>
                         </div>
