@@ -33,17 +33,17 @@ function render(images) {
 
 for (let inp of input) {
     inp.addEventListener("change", (e) => {
+        if(e.target.closest(".group_container").querySelector(".image")){
+            let imgSrc = e.target.closest(".group_container").querySelector(".image").src
+        }
+        if (e.target.files[0]) {
             if(e.target.closest(".group_container").querySelector(".image")){
-                let imgSrc = e.target.closest(".group_container").querySelector(".image").src
+                deletedImages.push(imgSrc)
             }
-            if (e.target.files[0]) {
-                if(e.target.closest(".group_container").querySelector(".image")){
-                    deletedImages.push(imgSrc)
-                }
-                const url = URL.createObjectURL(e.target.files[0])
-                e.target.closest(".group_container").insertAdjacentHTML("beforeend", getImagePreview(url))
-                e.target.closest(".full_container").insertAdjacentHTML("beforeend", getDeleteButton())
-            }
+            const url = URL.createObjectURL(e.target.files[0])
+            e.target.closest(".group_container").insertAdjacentHTML("beforeend", getImagePreview(url))
+            e.target.closest(".full_container").insertAdjacentHTML("beforeend", getDeleteButton())
+        }
     })
 }
 

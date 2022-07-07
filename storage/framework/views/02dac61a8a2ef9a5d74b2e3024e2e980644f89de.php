@@ -196,7 +196,7 @@
                     <tr>
                         <td><?php echo e($user['id']); ?></td>
                         <?php if($user['img_src'] == null): ?>
-                            <td><a href="<?php echo e(route('admin.user.showAll', $user['id'])); ?>"><img width="35px" src="<?php echo e(asset('storage/images/user.png')); ?>" class="avatar" alt="Avatar"><?php echo e($user['name']); ?></a></td>
+                            <td><a href="<?php echo e(route('admin.user.showAll', $user['id'])); ?>"><img width="35px" src="<?php echo e(asset('storage/images/default_user_image.png')); ?>" class="avatar" alt="Avatar"><?php echo e($user['name']); ?></a></td>
                         <?php else: ?>
                             <td><a href="<?php echo e(route('admin.user.showAll', $user['id'])); ?>"><img width="35px" src="<?php echo e(asset($user['img_src'])); ?>" class="avatar" alt="Avatar"><?php echo e($user['name']); ?></a></td>
                         <?php endif; ?>
