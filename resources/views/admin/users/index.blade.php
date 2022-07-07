@@ -196,7 +196,7 @@
                     <tr>
                         <td>{{ $user['id'] }}</td>
                         @if($user['img_src'] == null)
-                            <td><a href="{{ route('admin.user.showAll', $user['id']) }}"><img width="35px" src="{{ asset('storage/images/user.png') }}" class="avatar" alt="Avatar">{{ $user['name'] }}</a></td>
+                            <td><a href="{{ route('admin.user.showAll', $user['id']) }}"><img width="35px" src="{{ asset('storage/images/default_user_image.png') }}" class="avatar" alt="Avatar">{{ $user['name'] }}</a></td>
                         @else
                             <td><a href="{{ route('admin.user.showAll', $user['id']) }}"><img width="35px" src="{{ asset($user['img_src']) }}" class="avatar" alt="Avatar">{{ $user['name'] }}</a></td>
                         @endif

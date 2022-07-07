@@ -31,7 +31,7 @@ class PagesController extends Controller
 
         return view('home', [
             'categories' => Category::all(),
-            'advertisements' => Advertisement::all(),
+            'advertisements' => Advertisement::inRandomOrder()->where('is_vip', 1)->limit(4)->get(),
         ]);
     }
 

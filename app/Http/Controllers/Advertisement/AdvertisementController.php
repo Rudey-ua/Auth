@@ -165,10 +165,11 @@ class AdvertisementController extends Controller
     public function filter(Request $request)
     {
 
-        $category_id = $request['category_id'];
-        $category = Category::find($category_id);
+        $advertisements = Advertisement::query();
 
-        $advertisements = Advertisement::where('category_id', $category_id);
+        if(isset($request['category_id'])){
+            $advertisements->where('category_id', $request['category_id']);
+        }
 
         if(isset($request['engine_type'])){
             $advertisements->whereIn('engine_type', $request['engine_type']);
@@ -194,18 +195,20 @@ class AdvertisementController extends Controller
             $advertisements->whereIn('seats', $request['seats']);
         }
 
-        if(isset($request['from']) || isset($request['to'])){
-            $from = (int)$request['from'];
-            $to = (int)$request['to'];
-
-            $advertisements->whereBetween('price', [$from, $to]);
+        if(isset($request['min'])) {
+            $from = (int)$request['min'];
+            $advertisements->where('price', '>=', $from);
         }
 
-        $advertisements = $advertisements->get();
+        if($request['max'] != null) {
+            $to = (int)$request['max'];
+            $advertisements->where('price', '<=', $to);
+        }
 
-        return view('advertisement.category', [
+        $advertisements = $advertisements->paginate(10)->withQueryString();
+
+        return view('advertisement.filter', [
             'advertisements' => $advertisements,
-            'category'=> $category
         ]);
 
     }

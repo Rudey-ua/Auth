@@ -22,6 +22,7 @@ class FavouriteController extends Controller
     }
 
     public function add(Request $request) {
+
         $user_id = Auth::user()['id'];
         $advertisement = Advertisement::find($request['id']);
 
@@ -34,7 +35,9 @@ class FavouriteController extends Controller
     }
 
     public function delete(Request $request) {
-        $favourite = Favourite::find($request['id']);
+
+        $favourite = Favourite::where('advertisement_id', $request->id)
+        ->where('user_id', Auth::user()->getAuthIdentifier())->first();
         $favourite->delete();
 
         return redirect()->route('favourites.show');

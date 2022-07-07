@@ -30,7 +30,7 @@
                 <input type="hidden" name="id" value="<?php echo e($user['id']); ?>">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-2">
                     <?php if($user['img_src'] == null): ?>
-                        <img class="rounded-3 mt-5" width="200px" src="<?php echo e(asset('storage/images/user.png')); ?>" alt="user_img">
+                        <img class="rounded-3 mt-5" width="200px" src="<?php echo e(asset('storage/images/default_user_image.png')); ?>" alt="user_img">
                     <?php else: ?>
                         <img class="rounded-3 mt-5" width="200px" src="<?php echo e($user['img_src']); ?>" alt="user_img">
                     <?php endif; ?>

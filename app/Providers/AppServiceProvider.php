@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::defaultView('vendor.pagination.bootstrap-5');
+        Paginator::defaultView('vendor.pagination.bootstrap-4');
 
         Blade::if('admin', function () {
             return auth()->check() && auth()->user()->group == 1;

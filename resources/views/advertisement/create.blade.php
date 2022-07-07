@@ -15,7 +15,7 @@
         @csrf
         <input name="category_id" id="input-categories" type="text" style="display: none;">
         <div class="card-body">
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label>Укажите название</label>
                 <input required name="title" type="text" class="form-control"
                        style="width:50%;height: 50px;font-size: 18px;" placeholder="Например, iPhone 8">
@@ -37,7 +37,7 @@
                           placeholder="Подумайте, какие подробности вы хотели бы узнать из объявления. И добавьте их в описание"></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-2 mb-3">
                 <label>Цена</label>
                 <input required name="price" type="number" min="0" placeholder="USD" class="form-control" style="width:30%;height:50px;font-size: 18px;">
             </div>
@@ -109,7 +109,6 @@
         </div>
     </form>
 </div>
-
 
 <script src="{{ asset('js/script.js') }}"></script>
 
@@ -204,4 +203,3 @@
 
 
 </body>
-</html>

@@ -1,20 +1,29 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Type some info">
+    <meta name="author" content="Type name">
+
     <title>Slando</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.min.css')); ?>">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('css/photo.css')); ?>">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
+    <!-- Bootstrap css -->
+    <link href="<?php echo e(asset('/css/bootstrap.css?v=2.0')); ?>" rel="stylesheet" type="text/css"/>
 
-</html>
+    <!-- Custom css -->
+    <link href="<?php echo e(asset('/css/ui.css?v=2.0')); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('/css/responsive.css?v=2.0')); ?>" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/photo.css')); ?>">
+
+    <!-- Font awesome 5 -->
+    <link href="<?php echo e(asset('/fonts/fontawesome/css/all.min.css')); ?>" type="text/css" rel="stylesheet">
+
+    <style>
+        .section-content {
+            min-height: 82vh;
+        }
+    </style>
+
+</head>
 <?php /**PATH C:\OpenServer\domains\slando.com\resources\views/includes/user/head.blade.php ENDPATH**/ ?>

@@ -123,12 +123,9 @@ Route::group(['namespace' => 'Advertisement'], function(){
     Route::get('/search', [AdvertisementController::class, 'searchByTitle'])
         ->name('advertisement.search_result');
 
-    /* Category-View */
+    /* Filter */
 
-    Route::get('/category/{id}', [PagesController::class, 'indexCategory'])->name('category');
-
-    Route::get('/category/{id}/filter', [AdvertisementController::class, 'filter'])->name('filter');
-
+    Route::get('/filter', [AdvertisementController::class, 'filter'])->name('filter');
 
     Route::group(['middleware' => 'auth'], function(){
         /*Favourite*/
@@ -136,10 +133,10 @@ Route::group(['namespace' => 'Advertisement'], function(){
         Route::get('favourites', [FavouriteController::class, 'index'])
             ->name('favourites.show');
 
-        Route::post('favourite/add', [FavouriteController::class, 'add'])
+        Route::get('favourite/add/{id}', [FavouriteController::class, 'add'])
             ->name('favourite.add');
 
-        Route::post('favourite/delete', [FavouriteController::class, 'delete'])
+        Route::get('favourite/delete/{id}', [FavouriteController::class, 'delete'])
             ->name('favourite.delete');
     });
 });
