@@ -92,8 +92,12 @@ return new class extends Migration
             $table->string('bred')->nullable(); // Порода - Бульдог, бурбуль, далматин
 
             /*-----------------------Clothing-----------------------*/
-
+            
             $table->string('size')->nullable(); // Размер
+            
+            /*-----------------------Auction-----------------------*/
+            $table->float('min_bid')->nullable(); // 
+            $table->dateTime('time')->nullable(); // 
 
             $table->timestamps();
         });

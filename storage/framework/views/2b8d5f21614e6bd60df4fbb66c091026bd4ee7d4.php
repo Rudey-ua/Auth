@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
     Admin main page
 <?php $__env->stopSection(); ?>
