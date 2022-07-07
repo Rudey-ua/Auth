@@ -15,4 +15,9 @@ class Bid extends Model
         'password',
         'price',
     ];
+
+    public function user()
+    {
+        return User::where(['id' => $this->user_id])->get()->first();
+    }
 }
