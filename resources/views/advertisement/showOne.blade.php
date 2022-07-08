@@ -36,7 +36,16 @@
                     </aside>
                     <main class="col-lg-6">
                         <article class="ps-lg-3">
-                            <h4 class="title text-dark">{{ $item->title }}</h4>
+                            <div class="row">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h4 class="title text-dark">{{ $item->title }}</h4>
+                                    </div>
+                                    <div class="text-secondary">
+                                        ID: <strong id='id'>{{$item->id}}</strong>
+                                    </div>
+                                </div>
+                            </div>
 
                             <hr>
 

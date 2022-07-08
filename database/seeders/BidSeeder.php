@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DateInterval;
 use DateTime;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -26,5 +27,6 @@ class BidSeeder extends Seeder
             'user_id' => 3,
             'price' => 50000,
         ]);
+        
     }
 }

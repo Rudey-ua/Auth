@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ArticlesController;
+use App\Http\Controllers\AuctoinController;
 use App\Models\Advertisement;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -58,6 +59,8 @@ Route::get('/auction', function () {
 Route::get('/max', function(){
     return Bid::all();
 });
+
+Route::post('/makebid', [AuctoinController::class, 'make_bid']);
 
 // DROP EVENT IF EXISTS cr_pr;
 // DELIMITER //
