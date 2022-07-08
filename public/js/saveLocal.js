@@ -1,9 +1,10 @@
 const resetButton = document.getElementById('reset')
-//const inputs = document.getElementsByTagName('input')
+const inputs = document.getElementsByTagName('input')
 
 resetButton.addEventListener("click", (e) => {
     sessionStorage.clear()
     location.reload()
+    //window.location.href = window.location.href.split("&")[0]
 })
 
 window.addEventListener("load", (e) => {

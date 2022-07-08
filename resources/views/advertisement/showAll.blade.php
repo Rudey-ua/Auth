@@ -53,6 +53,7 @@
             </tbody>
         </table>
     </div>
+    {{ $ads->links() }}
 </div>
 
 </body>

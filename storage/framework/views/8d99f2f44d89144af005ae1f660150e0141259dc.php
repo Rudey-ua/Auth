@@ -53,6 +53,8 @@
             </tbody>
         </table>
     </div>
+    <?php echo e($ads->links()); ?>
+
 </div>
 
 </body>

@@ -33,6 +33,12 @@
                             <span>{{ \Illuminate\Support\Facades\Auth::user()['name'] }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
+
+                            @admin
+                                <li> <a class="dropdown-item" href="{{ route('admin.user.index') }}">Адміністративна панель</a> </li>
+                                <li> <hr class="dropdown-divider"> </li>
+                            @endadmin
+
                             <li> <a class="dropdown-item" href="{{ route('profile') }}">Налаштування</a> </li>
                             <li> <hr class="dropdown-divider"> </li>
                             <li> <a class="dropdown-item" href="{{ route('advertisement.showAll') }}">Всі оголошення</a> </li>

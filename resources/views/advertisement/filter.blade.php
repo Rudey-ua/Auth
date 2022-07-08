@@ -38,9 +38,9 @@
                     <div class="row g-0">
                         <aside class="col-xl-3 col-md-4">
                             @if(count($advertisement->photos) > 0)
-                                <a href="#" class="img-wrap"> <img src="{{ asset($advertisement->photos->first()['img_src']) }}"> </a>
+                                <a href="{{ route('advertisement.view', $advertisement->id) }}" class="img-wrap"> <img src="{{ asset($advertisement->photos->first()['img_src']) }}"> </a>
                             @elseif(count($advertisement->photos) == 0)
-                                <a href="#" class="img-wrap"> <img src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640"> </a>
+                                <a href="{{ route('advertisement.view', $advertisement->id) }}" class="img-wrap"> <img src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640"> </a>
                             @endif
                         </aside> <!-- col.// -->
                         <div class="col-xl-9 col-md-8 border-start">
@@ -56,7 +56,7 @@
                                         </a>
                                     @endif
                                 @endauth
-                                    <a href="#" class="title mb-2">{{ $advertisement->title }}</a>
+                                    <a href="{{ route('advertisement.view', $advertisement->id) }}" class="title mb-2">{{ $advertisement->title }}</a>
                                 <div class="price-wrap me-3">
                                     <span class="price h5"> ${{ number_format($advertisement->price, 0, ',', '.') }} </span>
                                     <del class="price-old"> ${{ number_format($advertisement->price + rand($advertisement->price/10, $advertisement->price/8), 0, ',', '.') }} </del>
@@ -78,10 +78,6 @@
             <aside class="col-lg-3 col-sm-6 d-none d-lg-block">
 
                 <!-- COMPONENTS SIDEBAR -->
-                <form method="GET" action="{{ route('filter') }}">
-                    <div class="card">
-                        <input type="hidden" name="category_id" value="@php echo $_GET['category_id'] @endphp">
-
                         @switch(app('request')->input('category_id'))
                             @case(9)
                                 @include('includes.filters.cars')
@@ -95,15 +91,9 @@
                                 @include('includes.filters.flats')
                             @break;
                         @endswitch
-
-                    <button class="btn btn-light w-100" type="submit">Apply</button>
-                    <button class="btn btn-light w-100" id="reset" type="submit">Reset</button>
-
-                    </div> <!-- card.// -->
-
-                </form>
                 <!-- ============= COMPONENTS SIDEBAR END .// ============= -->
             </aside>
+
         </div>
         {{ $advertisements->links() }}
     </div>

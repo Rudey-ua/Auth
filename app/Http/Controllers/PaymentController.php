@@ -103,6 +103,10 @@ class PaymentController extends Controller
 
                 $purchasing = Purchasing::where('user_id', $user_id)->orderByDesc('id')->first();
 
+                $hidden = Advertisement::find($purchasing['advertisement_id']);
+                $hidden->hidden = 1;
+                $hidden->save();
+
                 Purchase::create([
                     'advertisement_id' => $purchasing['advertisement_id'],
                     'user_id' => $purchasing['user_id'],
@@ -111,7 +115,7 @@ class PaymentController extends Controller
 
                 $purchasing->delete();
 
-                return redirect()->route('home');
+                return redirect()->route('purchases');
             } else {
                 return $response->getMessage();
             }

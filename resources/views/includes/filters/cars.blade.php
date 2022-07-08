@@ -1,4 +1,9 @@
-<article class="filter-group">
+<!-- COMPONENTS SIDEBAR -->
+<form method="GET" action="{{ route('filter') }}">
+    <div class="card">
+        <input type="hidden" name="category_id" value="@php echo $_GET['category_id'] @endphp">
+
+        <article class="filter-group">
     <header class="card-header">
         <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside1">
             <i class="icon-control fa fa-chevron-down"></i>
@@ -23,7 +28,7 @@
     </div>
 </article> <!-- filter-group // -->
 
-<article class="filter-group">
+        <article class="filter-group">
     <header class="card-header">
         <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside2">
             <i class="icon-control fa fa-chevron-down"></i>
@@ -50,7 +55,7 @@
     </div>
 </article>  <!-- filter-group // -->
 
-<article class="filter-group">
+        <article class="filter-group">
     <header class="card-header">
         <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside3">
             <i class="icon-control fa fa-chevron-down"></i>
@@ -72,7 +77,7 @@
     </div>
 </article>  <!-- filter-group // -->
 
-<article class="filter-group">
+        <article class="filter-group">
     <header class="card-header">
         <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside4">
             <i class="icon-control fa fa-chevron-down"></i>
@@ -94,7 +99,7 @@
     </div>
 </article>  <!-- filter-group // -->
 
-<article class="filter-group">
+        <article class="filter-group">
     <header class="card-header">
         <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside7">
             <i class="icon-control fa fa-chevron-down"></i>
@@ -120,3 +125,10 @@
         </div> <!-- card-body.// -->
     </div>
 </article>  <!-- filter-group // -->
+
+        <button class="btn btn-light w-100" type="submit">Apply</button>
+        <button class="btn btn-light w-100" id="reset" type="submit">Reset</button>
+
+    </div> <!-- card.// -->
+
+</form>

@@ -20,7 +20,7 @@ class AdvertisementController extends Controller
 {
     public function showAllAdvertisements(){
         $user = Auth::user();
-        $ads = Advertisement::where('user_id', $user['id'])->get();
+        $ads = Advertisement::where('user_id', $user['id'])->paginate(10);
 
         return view('advertisement.showAll', compact('user', 'ads'));
     }
@@ -156,7 +156,7 @@ class AdvertisementController extends Controller
             $search_request = $request->title;
             $advertisements = Advertisement::where('title', 'LIKE', '%' . $request->title . '%')
                     ->where(['checked' => 1])
-                    ->get();
+                    ->paginate(10)->withQueryString();
             return view('advertisement.search_result', compact(['advertisements', 'search_request']));
         }
         return redirect()->route('home');
@@ -193,6 +193,10 @@ class AdvertisementController extends Controller
 
         if(isset($request['seats'])){
             $advertisements->whereIn('seats', $request['seats']);
+        }
+
+        if(isset($request['body_type'])){
+            $advertisements->where('body_type', $request['body_type']);
         }
 
         if(isset($request['min'])) {

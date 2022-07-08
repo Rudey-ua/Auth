@@ -17,24 +17,19 @@
         <div class="card-body">
             <div class="form-group mb-3">
                 <label>Укажите название</label>
-                <input required name="title" type="text" class="form-control"
-                       style="width:50%;height: 50px;font-size: 18px;" placeholder="Например, iPhone 8">
+                <input required name="title" type="text" class="form-control" style="width:50%;height: 50px;font-size: 18px;" placeholder="Например, iPhone 8">
             </div>
 
             <select required style="width: 50%;height: 50px;margin-bottom: 10px; font-size: 16px;" class="form-select"
                     aria-label="Default select example">
-                <option value='' selected>Выбери категорию</option>
+                <option value='' selected>Выберите категорию</option>
             </select>
 
-            <select required class="child-category form-select"
-                    style="display: none; width: 50%;height: 50px;margin-top: 15px; margin-bottom: 15px; font-size: 16px;">
-
-            </select>
+            <select required class="child-category form-select" style="display: none; width: 50%;height: 50px;margin-top: 15px; margin-bottom: 15px; font-size: 16px;"></select>
 
             <div class="form-group">
                 <label>Описание</label>
-                <textarea required name="description" class="form-control" style="width:70%" rows="3"
-                          placeholder="Подумайте, какие подробности вы хотели бы узнать из объявления. И добавьте их в описание"></textarea>
+                <textarea minlength="80" required name="description" class="form-control" style="width:70%" rows="3" placeholder="Подумайте, какие подробности вы хотели бы узнать из объявления. И добавьте их в описание"></textarea>
             </div>
 
             <div class="form-group mt-2 mb-3">

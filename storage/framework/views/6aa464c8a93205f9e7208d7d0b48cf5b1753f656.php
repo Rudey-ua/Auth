@@ -33,6 +33,12 @@
                             <span><?php echo e(\Illuminate\Support\Facades\Auth::user()['name']); ?></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
+
+                            <?php if (\Illuminate\Support\Facades\Blade::check('admin')): ?>
+                                <li> <a class="dropdown-item" href="<?php echo e(route('admin.user.index')); ?>">Адміністративна панель</a> </li>
+                                <li> <hr class="dropdown-divider"> </li>
+                            <?php endif; ?>
+
                             <li> <a class="dropdown-item" href="<?php echo e(route('profile')); ?>">Налаштування</a> </li>
                             <li> <hr class="dropdown-divider"> </li>
                             <li> <a class="dropdown-item" href="<?php echo e(route('advertisement.showAll')); ?>">Всі оголошення</a> </li>
