@@ -47,4 +47,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function do_bid(Advertisement $ad, $bid)
+    {
+        Bid::create([
+            'advertisement_id' => $ad->id,
+            'user_id' => $this->id,
+            'price' => $bid,
+        ]);
+    }
 }

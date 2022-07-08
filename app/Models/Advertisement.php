@@ -56,6 +56,8 @@ class Advertisement extends Model
         'bred',
         'gender',
         'size',
+        'min_bid',
+        'time'
     ];
 
     public function category()
@@ -68,9 +70,8 @@ class Advertisement extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function photos(){
+    public function photos()
+    {
         return $this->hasMany(Photo::class, 'advertisement_id', 'id');
     }
-
 }
-

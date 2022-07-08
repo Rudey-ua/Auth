@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Advertisement;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Bid;
 use App\Models\Photo;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,6 +32,8 @@ class AdvertisementController extends Controller
             ->where(['checked' => 1])
             ->get();
 
+        $bids = Bid::where(['advertisement_id' => $id])->get();
+
         if(count($advertisement) == 0){
             return abort(403);
         }
@@ -39,7 +42,8 @@ class AdvertisementController extends Controller
 
         return view('advertisement.showOne', [
             'advertisement' => $advertisement,
-            'photos' => $photos
+            'photos' => $photos,
+            'bids' => $bids
         ]);
 
     }

@@ -1,56 +1,123 @@
-<form action="<?php echo e(route('filter', $category->first()->id)); ?>" method="GET">
+<article class="filter-group">
+    <header class="card-header">
+        <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside1">
+            <i class="icon-control fa fa-chevron-down"></i>
+            Ціна
+        </a>
+    </header>
+    <div class="collapse show" id="collapse_aside1">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label for="min" class="form-label">Min</label>
+                    <input class="form-control" name="min" value="0" id="min" placeholder="$0" type="number">
+                </div> <!-- col end.// -->
 
-    <input type="hidden" name="category_id" value="<?php echo e($category->first()->id); ?>">
+                <div class="col-6">
+                    <label for="max" class="form-label">Max</label>
+                    <input class="form-control" name="max" id="max" placeholder="$1,0000" type="number">
+                </div> <!-- col end.// -->
+            </div> <!-- row end.// -->
 
-    <div class="mt-3 mb-3">
-        <label>Тип двигателя</label><br>
-        <input type="checkbox" value="Бензиновый" name="engine_type[]"/> Бензиновый<br>
-        <input type="checkbox" value="Дизельный" name="engine_type[]"/> Дизельный<br>
-        <input type="checkbox" value="Электрический" name="engine_type[]"/> Электрический<br>
+        </div> <!-- card-body.// -->
     </div>
+</article> <!-- filter-group // -->
 
-    <div class="mt-3 mb-3">
-        <label>Цена</label><br>
-        <input class="mb-1" type="number" value="0" placeholder="от" name="from"/><br>
-        <input class="mb-1" type="number" value="<?php echo e($advertisements->max('price')); ?>" placeholder="от" name="to"/><br>
+<article class="filter-group">
+    <header class="card-header">
+        <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside2">
+            <i class="icon-control fa fa-chevron-down"></i>
+            Тип двигуна
+        </a>
+    </header>
+    <div class="collapse show" id="collapse_aside2">
+        <div class="card-body">
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="gasoline" type="checkbox" name="engine_type[]">
+                <span class="form-check-label"> Бензиновий </span>
+            </label>
+
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="diesel" type="checkbox" name="engine_type[]">
+                <span class="form-check-label"> Дизельний </span>
+            </label>
+
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="electric" type="checkbox" name="engine_type[]">
+                <span class="form-check-label"> Електричний </span>
+            </label>
+        </div> <!-- card-body.// -->
     </div>
+</article>  <!-- filter-group // -->
 
-     <div class="mt-3 mb-3">
-        <label>Состояние</label><br>
-        <input type="checkbox" value="new" name="type[]"/> Новый<br>
-        <input type="checkbox" value="used" name="type[]"/> Б/У<br>
+<article class="filter-group">
+    <header class="card-header">
+        <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside3">
+            <i class="icon-control fa fa-chevron-down"></i>
+            Стан
+        </a>
+    </header>
+    <div class="collapse show" id="collapse_aside3">
+        <div class="card-body">
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="new" type="checkbox" name="type[]">
+                <span class="form-check-label"> Нове </span>
+            </label>
+
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="used" type="checkbox" name="type[]">
+                <span class="form-check-label"> Вживане  </span>
+            </label>
+        </div> <!-- card-body.// -->
     </div>
+</article>  <!-- filter-group // -->
 
-    <div class="mt-3 mb-3">
-        <label>Коробка передач</label><br>
-        <input type="checkbox" value="Механическая" name="transmission[]"/> Механическая<br>
-        <input type="checkbox" value="Автоматическая" name="transmission[]"/> Автоматическая<br>
+<article class="filter-group">
+    <header class="card-header">
+        <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside4">
+            <i class="icon-control fa fa-chevron-down"></i>
+            Коробка передач
+        </a>
+    </header>
+    <div class="collapse" id="collapse_aside4">
+        <div class="card-body">
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="mechanical" type="checkbox" name="transmission[]">
+                <span class="form-check-label"> Механічна </span>
+            </label>
+
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="automatic" type="checkbox" name="transmission[]">
+                <span class="form-check-label"> Автоматична  </span>
+            </label>
+        </div> <!-- card-body.// -->
     </div>
+</article>  <!-- filter-group // -->
 
-    <div class="mt-3 mb-3">
-        <label>Тип привода</label><br>
-        <input type="checkbox" value="Полный" name="type_of_drive[]"/> Полный<br>
-        <input type="checkbox" value="Задний" name="type_of_drive[]"/> Задний<br>
-        <input type="checkbox" value="Передний" name="type_of_drive[]"/> Передний<br>
+<article class="filter-group">
+    <header class="card-header">
+        <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside7">
+            <i class="icon-control fa fa-chevron-down"></i>
+            Тип приводу
+        </a>
+    </header>
+    <div class="collapse" id="collapse_aside7">
+        <div class="card-body">
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="full" type="checkbox" name="type_of_drive[]">
+                <span class="form-check-label"> Повний </span>
+            </label>
+
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="rear" type="checkbox" name="type_of_drive[]">
+                <span class="form-check-label"> Задній  </span>
+            </label>
+
+            <label class="form-check mb-2">
+                <input class="form-check-input" value="front" type="checkbox" name="type_of_drive[]">
+                <span class="form-check-label"> Передній  </span>
+            </label>
+        </div> <!-- card-body.// -->
     </div>
-
-    <div class="mt-3 mb-3">
-        <label>Цвет</label><br>
-        <input type="checkbox" value="Белый<" name="color[]"/> Белый<br>
-        <input type="checkbox" value="Черный" name="color[]"/> Черный<br>
-        <input type="checkbox" value="Синий" name="color[]"/> Синий<br>
-        <input type="checkbox" value="Красный" name="color[]"/> Красный<br>
-    </div>
-
-    <div class="mt-3 mb-3">
-        <label>Колличество мест</label><br>
-        <input type="checkbox" value="2" name="seats[]"/> Два<br>
-        <input type="checkbox" value="3" name="seats[]"/> Три<br>
-        <input type="checkbox" value="4" name="seats[]"/> Четыре<br>
-        <input type="checkbox" value="5" name="seats[]"/> Пять<br>
-        <input type="checkbox" value="6" name="seats[]"/> Шесть<br>
-    </div>
-
-    <button class="btn btn-success" type="submit">Фильтровать</button>
-</form>
+</article>  <!-- filter-group // -->
 <?php /**PATH C:\OpenServer\domains\slando.com\resources\views/includes/filters/cars.blade.php ENDPATH**/ ?>
